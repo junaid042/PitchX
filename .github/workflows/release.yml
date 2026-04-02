@@ -19,19 +19,26 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v2
 
-    - name: Restore packages
+    - name: Install WiX v3
+      run: |
+        choco install wixtoolset --version=3.14.1 -y
+        echo "C:\Program Files (x86)\WiX Toolset v3.14\bin" >> $env:GITHUB_PATH
+      shell: powershell
+
+    - name: Restore NuGet packages
       run: nuget restore PitchX.sln
 
-    - name: Build TLBR in Release mode
+    - name: Disable ClickOnce signing
+      run: |
+        (Get-Content PitchX\TLBR.csproj) -replace '<SignManifests>true</SignManifests>', '<SignManifests>false</SignManifests>' | Set-Content PitchX\TLBR.csproj
+      shell: powershell
+
+    - name: Build solution
       run: msbuild PitchX.sln /p:Configuration=Release /p:Platform="Any CPU"
 
-    - name: Install WiX 6
-      run: |
-        dotnet tool install --global wix
-        wix extension add WixToolset.UI.wixext/6.0.0 --global
-
-    - name: Build MSI
-      run: wix build Setup/Package.wxs -o PitchX.msi
+    - name: Rename MSI
+      run: copy Setup\bin\Release\Setup.msi PitchX.msi
+      shell: powershell
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
