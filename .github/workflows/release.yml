@@ -1,0 +1,42 @@
+name: Build and Release PitchX MSI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+
+    - name: Restore packages
+      run: nuget restore PitchX.sln
+
+    - name: Build TLBR in Release mode
+      run: msbuild PitchX.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Install WiX 6
+      run: |
+        dotnet tool install --global wix
+        wix extension add WixToolset.UI.wixext/6.0.0 --global
+
+    - name: Build MSI
+      run: wix build Setup/Package.wxs -o PitchX.msi
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: PitchX.msi
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

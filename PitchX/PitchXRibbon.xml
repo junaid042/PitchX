@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="tabTLBR" label="TLBR">
+		  <!-- Templates Section -->
+		  <group id="Templates" label="Templates" imageMso="MicrosoftPowerPoint" autoScale="true">
+			  <button id="Widescreen" label="Widescreen" getImage="getImage" onAction="WSMacro" supertip="Start a new Widescreen Template (use if a document is being viewed on a screen)" />
+			  <button id="A4" label="A4 Landscape" getImage="getImage" onAction="A4Macro" supertip="Start a new A4 Landscape Template (use if a document will be printed)" />
+			  <button id="UST" label="US Letter" getImage="getImage" onAction="USLMacro" supertip="Start a new US Letter Template (use for documents printed in countries using US Letter size paper)" />
+		  </group>
+		  
+		  <!-- Text Formatting Section -->
+		  <group id="TextFormatting" label="Text" imageMso="GroupBlogStyles" autoScale="true">
+			  <labelControl id="TextFmt_1" label="Margins" />
+			  <buttonGroup id="SB1" >
+				  <button id="Margin0" label="Margin 0.0" getImage="getImage" onAction="Margin0" supertip="Set margin to 0.0" showLabel="false" />
+				  <button id="Margin1" label="Margin 0.1" getImage="getImage" onAction="Margin1" supertip="Set margin to 0.1" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB2" >
+				  <button id="Margin2" label="Margin 0.2" getImage="getImage" onAction="Margin2" supertip="Set margin to 0.2" showLabel="false" />
+				  <button id="CustomMargin" label="Custom Margin" imageMso="GridShowHide" onAction="CustomMargin" supertip="Enter custom margin values" showLabel="false" />
+			  </buttonGroup>
+
+			  <separator id="TF1" />
+			  <labelControl id="TextFmt_2" label="Line Spc." />
+			  <buttonGroup id="SB3" >
+				  <button id="LS6pt" label="Line Space After 6pt" getImage="getImage" onAction="LineSpace6" supertip="Set line spacing after to 6pt" showLabel="false" />
+				  <button id="LS1pt" label="Line Space After 1pt" getImage="getImage" onAction="LineSpace1" supertip="Set line spacing after to 1pt" showLabel="false" />
+			  </buttonGroup>
+
+			  <separator id="TF2" />
+			  <labelControl id="TextFmt_3" label="Text Box" />
+			  <buttonGroup id="SB4">
+				  <button id="MergeTextBoxes" label="Merge Text Boxes" imageMso="ViewDraftView" onAction="MergeTextBoxes" supertip="Merge selected text boxes into one" showLabel="false" />
+				  <button id="SplitTextBoxes" label="Split Text Boxes" imageMso="MultiplePages" onAction="SplitTextBoxes" supertip="Split a text box into multiple parts" showLabel="false" />
+				  <button id="TextBoxPlain" label="Plain Text Box" getImage="getImage" onAction="PlainText" supertip="Apply text format to the selected box or insert a new text box" showLabel="false" />
+				  <menu id="StraplineMenu" label="Insert / Format Strapline" supertip="Insert or format a Strapline to the page" imageMso="DatasheetColumnRename" showLabel="false">
+					  <button id="Strapline1" label="1 line Strapline" imageMso="_1" onAction="Strapline1" supertip="Insert or format a 1 line Strapline" />
+					  <button id="Strapline2" label="2 line Strapline" imageMso="_2" onAction="Strapline2" supertip="Insert or format a 2 line Strapline" />
+				  </menu>
+			  </buttonGroup>
+			  <buttonGroup id="SB5">
+				  <button id="ToggleWrap" label="Toggle Wrap Text" imageMso="W" onAction="ToggleWrap" supertip="Toggle between Wrap text on and off" showLabel="false" />
+				  <button id="ToggleResize" label="Toggle Resize" imageMso="R" onAction="ToggleResize" supertip="Toggle between Do not autofit and Resize shape to fit text" showLabel="false" />
+				  <button id="TextBoxFill" label="Fill Text Box" getImage="getImage" onAction="FillText" supertip="Apply text format to the selected box or insert a new text box" showLabel="false" />
+				  <button id="key" label="Insert key, note, source" imageMso="ReviewEditComment" onAction="Insertkey" supertip="Insert a key, note or source to the page" showLabel="false" />
+				  <button id="fullstop" label="Insert fullstops" imageMso="PowerPointParagraphDialog" onAction="fullstop" supertip="Insert fullstops to the end of paragraphs" showLabel="false" />
+			  </buttonGroup>
+		  </group>
+
+		  <!-- Object Formatting Section -->
+		  <group id="ObjectFormatting" label="Object" imageMso="QueryDataDefinition" autoScale="true">
+			  <labelControl id="TextFmt_4" label="Colour" />
+			  <buttonGroup id="SB6">
+				  <control idMso="ShapeFillColorPicker" visible= "true" showLabel="false" />
+				  <control idMso="ShapeOutlineColorPicker" visible= "true" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB7">
+				  <button id="NoFill" label="No Fill" visible= "true" getImage="getImage" onAction="NoFill" supertip="Remove the fill of the selected shape" showLabel="false" />
+				  <button id="NoOutline" label="No Outline" getImage="getImage" onAction="NoOutline" supertip="Remove the outline of the selected shape" showLabel="false" />
+				  <control idMso="FontColorPicker" label="Font Color" supertip="Change the colour of your text" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF3" />
+			  <labelControl id="TextFmt_5" label="Select" />
+			  <buttonGroup id="SB8">
+				  <button id="SelectFill" label="Select Same Fill" getImage="getImage" onAction="SelectSameFill" supertip="Select all objects with the same fill colour" showLabel="false" />
+				  <button id="SelectOutline" label="Select Same Outline" getImage="getImage" onAction="SelectSameOutline" supertip="Select all objects with the same outline colour" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB81" >
+				  <button id="SelectWidth" label="Select Same Width" getImage="getImage" onAction="SelectSameWidth" supertip="Select all objects with the same width" showLabel="false" />
+				  <button id="SelectHeight" label="Select Same Height" getImage="getImage" onAction="SelectSameHeight" supertip="Select all objects with the same height" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF4" />
+			  <labelControl id="TextFmt_6" label="Position" />
+			  <buttonGroup id="SB9">
+				  <button id="SwapPositions" label="Swap Positions" imageMso="Recurrence" onAction="SwapPositions" supertip="Swap the positions of two selected objects" showLabel="false" />
+				  <button id="CopyPosition" label="Copy Position" imageMso="PickUpStyle" onAction="CopyPosition" supertip="Copy the position of a selected object" showLabel="false" />
+				  <button id="PastePosition" label="Paste Position" imageMso="PasteApplyStyle" onAction="PastePosition" supertip="Paste the copied position to another object" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF5" />
+			  <labelControl id="TextFmt_7" label=" Align" />
+			  <buttonGroup id="SB10">
+				  <button id="AlignLeft" label="Align Left" imageMso="ObjectsAlignLeftOutlook" onAction="AlignLeft" supertip="Align objects to the left" showLabel="false" />
+				  <button id="AlignRight" label="Align Right" imageMso="ObjectsAlignRightOutlook" onAction="AlignRight" supertip="Align objects to the right" showLabel="false" />
+				  <button id="AlignTop" label="Align Top" imageMso="ObjectsAlignTopOutlook" onAction="AlignTop" supertip="Align objects to the top" showLabel="false" />
+				  <button id="AlignBottom" label="Align Bottom" imageMso="ObjectsAlignBottomOutlook" onAction="AlignBottom" supertip="Align objects to the bottom" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB11">
+				  <button id="AlignCentre" label="Align Centre" imageMso="ObjectsAlignCenterHorizontalOutlook" onAction="AlignCentre" supertip="Align objects to the centre" showLabel="false" />
+				  <button id="AlignMiddle" label="Align Middle" imageMso="ObjectsAlignMiddleVerticalOutlook" onAction="AlignMiddle" supertip="Align objects to the middle" showLabel="false" />
+				  <button id="DistributeHorizontal" label="Distribute Horizontal" imageMso="HorizontalSpacingMakeEqual" onAction="DistributeHorizontal" supertip="Distribute objects horizontally" showLabel="false" />
+				  <button id="DistributeVertical" label="Distribute Vertical" imageMso="VerticalSpacingMakeEqual" onAction="DistributeVertical" supertip="Distribute objects vertically" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF6" />
+			  <labelControl id="TextFmt_8" label="Size" />
+			  <buttonGroup id="SB12">
+				  <button id="SameWidth" label="Same Width" imageMso="SizeToControlWidth" onAction="SameWidth" supertip="Make objects the same width as the first one selected" showLabel="false" />
+				  <button id="SameHeight" label="Same Height" imageMso="SizeToControlHeight" onAction="SameHeight" supertip="Make objects the same height as the first one selected" showLabel="false" />
+				  <button id="SameWidthHeight" label="Same Width and Height" imageMso="SizeToControlHeightAndWidth" onAction="SameWidthHeight" supertip="Make objects the same width and height as the first one selected" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="Ob99">
+				  <button id="Unrotate" label="Unrotate objects" imageMso="TextBoxInsertVertical" onAction="Unrotate" supertip="Reset shape rotation, swap size, keep position" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF7" />
+			  <labelControl id="TextFmt_9" label="Space" />
+			  <buttonGroup id="SB13">
+				  <button id="TouchTop" label="Touch Top" imageMso="ObjectNudgeDown" onAction="TouchTop" supertip="Align objects to the top of the first box" showLabel="false" />
+				  <button id="TouchBottom" label="Touch Bottom" imageMso="ObjectNudgeUp" onAction="TouchBottom" supertip="Align objects to the bottom of the first box" showLabel="false" />
+				  <button id="TouchLeft" label="Touch Left" imageMso="ObjectNudgeRight" onAction="TouchLeft" supertip="Align objects to the left of the first box" showLabel="false" />
+				  <button id="TouchRight" label="Touch Right" imageMso="ObjectNudgeLeft" onAction="TouchRight" supertip="Align objects to the right of the first box" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB14">
+				  <button id="RightAdj" label="Right Space Adjustment" getImage="getImage" onAction="RightSpaceAdjustment" supertip="Stacks selected boxes with adjustable spacing (in cm) between each, keeping the first on the left" showLabel="false" />
+				  <button id="BottomAdj" label="Bottom Space Adjustment" getImage="getImage" onAction="BottomSpaceAdjustment" supertip="Stacks selected boxes with adjustable spacing (in cm) between each, keeping the first at the top" showLabel="false" />
+			  </buttonGroup>
+			  <separator id="TF55" />
+			  <labelControl id="TextFmt_15" label="Arrange" />
+			  <buttonGroup id="AB2">
+				  <button idMso="ObjectFlipHorizontal" showLabel="false" />
+				  <button idMso="ObjectFlipVertical" showLabel="false" />
+				  <button idMso="ObjectRotateLeft90" showLabel="false" />
+				  <button idMso="ObjectRotateRight90" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="AB1">
+				  <button idMso="ObjectSendToBack" showLabel="false" />
+				  <button idMso="ObjectSendBackward" showLabel="false" />
+				  <button idMso="ObjectBringForward" showLabel="false" />
+				  <button idMso="ObjectBringToFront" showLabel="false" />
+			  </buttonGroup>
+		  </group>
+
+		  <!-- Table Formatting Section -->
+		  <group id="TableFormatting" label="Table" imageMso="DatabaseQueryNew" autoScale="true">
+			  <labelControl id="TextFmt_10" label="Format" />
+			  <buttonGroup id="SB1010">
+				  <button id="FormatTable" label="Format Table" imageMso="AutoFormatDialog" onAction="FormatTable" supertip="Apply formatting to the selected tables" showLabel="false" />
+				  <button id="TableTitle" label="Add Table Title" imageMso="ActiveXFrame" onAction="TableTitle" supertip="Add a title above the selected tables" showLabel="false" />
+				  <button id="TableText" label="Table Text Formatter" imageMso="WordArtInsertDialogClassic" onAction="TableText" supertip="Format text in selected table with customisable font size" showLabel="false" />
+				  <menu id="ShadingMenu" label="Table Shading" supertip="Apply banded rows and columns" imageMso="QueryCrosstab" showLabel="false">
+					<button id="ApplyRows" label="Banded Rows" imageMso="TableRowSelect" onAction="BandedRows" supertip="Apply banded rows to table" showLabel="false" />
+				    <button id="ApplyColumns" label="Banded Columns" imageMso="TableColumnSelect" onAction="BandedColumns" supertip="Apply banded columns to table" showLabel="false" />
+				  </menu>
+			  </buttonGroup>
+			  <buttonGroup id="SB1011">
+				  <button id="HighlightCells" label="Highlight Cells" getImage="getImage" onAction="Highlight" supertip="Highlight selected cells in a table with an orange outline" showLabel="false" />
+				  <button id="HorizontalDivider" label="Horizontal Divider" getImage="getImage" onAction="Horizontal" supertip="Add a horizontal divider line underneath the selected cells" showLabel="false" />
+				  <button id="VerticalDivider" label="Vertical Divider" getImage="getImage" onAction="Vertical" supertip="Add a vertical divider line to the right of the selected cells" showLabel="false" />
+				  <button id="TotalRow" label="Total Row(s)" getImage="getImage" onAction="Total" supertip="Format the selected rows in the correct total format" showLabel="false" />
+				  <menu id="ColumnMenu" label="Consistent Columns" supertip="Copy the width of columns from one table to another" imageMso="TableAutoFitFixedColumnWidth" showLabel="false">
+					<button id="CopySize" label="Copy Column Widths" imageMso="ColumnWidth" onAction="CCWidth" supertip="Copy the column widths of the selected table" showLabel="false" />
+				    <button id="ApplySize" label="Apply Column Widths" imageMso="GroupTableCellSize" onAction="ACWidth" supertip="Apply the stored column widths to the selected tables" showLabel="false" />
+				  </menu>
+			  </buttonGroup>
+			  <separator id="TF8" />
+			  <labelControl id="TextFmt_11" label="Margins" />
+			  <buttonGroup id="SB15">
+				  <button id="Margin15" label="Table Margin" getImage="getImage" onAction="TableMargin15" supertip="Set 0.15cm margins on tables" showLabel="false" />
+				  <button id="CustomMarginTable" label="Custom Table Margin" imageMso="SizeToGridAccess" onAction="CustomMarginTable" supertip="Set custom margins for a table" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="SB28">
+				  <button id="CopyMargin" label="Copy Table Margin" imageMso="PagePrevious" onAction="CopyMargin" supertip="Copy the margin settings of a table" showLabel="false" />
+				  <button id="PasteMargin" label="Paste Table Margin" imageMso="PageNext" onAction="PasteMargin" supertip="Paste margin settings of a table" showLabel="false" />
+			  </buttonGroup>
+		  </group>
+
+		  <!-- Graph Formatting Section -->
+		  <group id="GraphFormatting" label="Graph" imageMso="ChartPlotArea" autoScale="true">
+			  <labelControl id="GrFmt_1" label="Format" />
+			  <buttonGroup id="Gr1" >
+				  <button id="FormatGraph" label="Format Graph" imageMso="Chart3DColumnChart" onAction="FormatGraphFunction" supertip="Apply formatting to the selected graphs" showLabel="false" />
+				  <button id="ChartTitle" label="Add Chart Title" imageMso="ChartTitle" onAction="ChartTitle" supertip="Add a tile above the selected graph" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="Gr2" >
+				  <button id="ChartText" label="Chart Text Formatter" imageMso="StylesModifyStyle" onAction="GraphText" supertip="Format text in selected charts with customisable font size" showLabel="false" />
+				  <button id="ColourSeries" label="Colour Series" imageMso="FontColorCycle" onAction="ColourSeries" supertip="Apply Aon colours to all the series in your graph" showLabel="false" />
+			  </buttonGroup>
+
+			  <separator id="SEP10" />
+			  <labelControl id="GrFmt_2" label="Tools" />
+			  <buttonGroup id="Gr3" >
+				  <button id="FindGraph" label="Find Embeded Graphs" imageMso="GroupCreateReports" onAction="FindEmbededGraph" supertip="Finds the graphs that are embedded into the file" showLabel="false" />
+				  <button id="UnembedGraph" label="Unembed Graph" imageMso="TextBoxLinkBreak" onAction="UnembedGraph" supertip="Unembed the selected graph to reduce file size" showLabel="false" />
+			  </buttonGroup>
+			  <buttonGroup id="Gr4" >
+				  <button id="CopyLink" label="Copy Graph Link" imageMso="GetExternalDataFromOtherSources" onAction="CopyLink" supertip="SHow and copy the file path of a graph if it is linked" showLabel="false" />
+				  <menu id="GGuidesMenu" label="Graph Guides" supertip="Open Graph Guides for your template" imageMso="ChartPlotArea" showLabel="false">
+					  <button id="guide1" label="Widescreen Guides" getImage="getImage" onAction="WidescreenGuide" supertip="Open Graph Guides for the Widescreen Template" />
+					  <button id="guide2" label="A4 Guides" getImage="getImage" onAction="A4Guide" supertip="Open Graph Guides for the A4 Template" />
+					  <button id="guide3" label="US Guides" getImage="getImage" onAction="USGuide" supertip="Open Graph Guides for the US Letter Template" />
+				  </menu>
+			  </buttonGroup>
+		  </group>
+
+		  <!-- Document Section -->
+		  <group id="DocumentTools" label="Document" imageMso="EditComposePage" autoScale="true">
+			  <button id="NoteRed" label="Insert Note" getImage="getImage" onAction="InsertNote" supertip="Insert a note" showLabel="false" />
+			  <button id="UK" label="Set UK English" getImage="getImage" onAction="SetUKLanguage" supertip="Set language to UK English" showLabel="false" />
+			  <button id="US" label="Set US English" getImage="getImage" onAction="SetUSLanguage" supertip="Set language to US English" showLabel="false" />
+			  <button id="SetDocumentTitle" label="Set Document Title" imageMso="FormControlEditBox" onAction="SetDocumentTitle" supertip="Set the document title to be the same as the file name" showLabel="false" />
+			  <button id="DeleteComments" label="Delete Comments" imageMso="ReviewDeleteCommentPowerPoint" onAction="DeleteComments" supertip="Delete all comments in the document" showLabel="false" />
+			  <button id="RemoveSlideNotes" label="Remove Slide Notes" imageMso="DataFormDeleteRecord" onAction="RemoveSlideNotes" supertip="Remove all slide notes in the document" showLabel="false" />
+			  <button id="FindImages" label="Find Large Images" imageMso="ControlUnboundObjectFrame" onAction="FindImages" supertip="Finds all the images in the PPT file" showLabel="false" />
+			  <button id="ShowExcel" label="Find Embedded Spreadsheets" imageMso="GroupChartBackground" onAction="ShowExcel" supertip="Finds all the Excel spreadsheets that are embedded into the PPT file" showLabel="false" />
+			  <button id="Colours" label="Extra colours" imageMso="AppointmentColorDialog" onAction="Colours" supertip="Open extra colours PPT file" showLabel="false" />
+			  <button id="BreakTable" label="Break Table" imageMso="ReviewDeleteCommentsMenuPowerPoint" onAction="BreakTable" supertip="Create text boxes for all cells of the selected table" showLabel="false" />
+			  <menu id="ElementsMenu" label="Insert Elements" supertip="Insert most used elements to the page" imageMso="DiagramChangeToVennDiagramClassic" showLabel="false">
+				  <button id="Bracket" label="Insert Bracket" getImage="getImage" onAction="Bracket" supertip="Insert a Square Bracket to the page" showLabel="false" />
+				  <button id="Chevron" label="Insert Chevron" getImage="getImage" onAction="Chevron" supertip="Insert a Chevron to the page" showLabel="false" />
+				  <button id="BigStat" label="Insert Big Stat" getImage="getImage" onAction="Bigstat" supertip="Insert a Big stat to the page" showLabel="false" />
+				  <button id="LitStat" label="Insert Little Stat" getImage="getImage" onAction="Litstat" supertip="Insert a Little stat to the page" showLabel="false" />
+				  <button id="Quote" label="Insert Quote" getImage="getImage" onAction="Quote" supertip="Insert a Quote to the page" showLabel="false" />
+			  </menu>
+			  <menu id="SignPost" label="Page Status" supertip="Mark the document as, ready for design, on still being worked on, or complete" imageMso="PersonaStatusOnline" showLabel="false">
+				  <button id="Ready" label="Ready for Design" getImage="getImage" onAction="Red" supertip="Mark the slide as ready for design" showLabel="false" />
+				  <button id="Hold" label="Still Being Worked On" getImage="getImage" onAction="Amber" supertip="Mark the slide as still being worked on" showLabel="false" />
+				  <button id="Done" label="Complete" getImage="getImage" onAction="Green" supertip="Mark the slide as complete" showLabel="false" />
+			  </menu>
+		  </group>
+
+		  <!-- Login to TLBR & Version Section -->
+		  <group id="groupAccount" label="Account">
+			  <button id="btnLoginToTLBR" label="Login to TLBR" size="large" imageMso="UserPermissionEdit" onAction="OnOpenLoginToTLBR" />
+			  <labelControl id="versionLabel" label="Version 1.0.0.14" />
+		  </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+	<Package Name="PitchX"
+			 Manufacturer="YourCompany"
+			 Version="1.0.0.0"
+			 UpgradeCode="{2C9BC61B-D23B-421A-ABCF-83F73FB195D9}">
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of PitchX is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="Main" Title="PitchX" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+		<ui:WixUI Id="WixUI_InstallDir" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+	</Package>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="PitchX" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+			<Component Id="MainDll">
+				<File Source="$(var.TLBR.TargetPath)" KeyPath="yes" />
+			</Component>
+
+			<Component Id="VstoFile">
+				<File Source="$(var.TLBR.TargetDir)TLBR.vsto" />
+			</Component>
+
+			<Component Id="ManifestFile">
+				<File Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
+			</Component>
+
+			<!-- Tells PowerPoint to load your add-in -->
+			<Component Id="Registry">
+				<RegistryKey Root="HKCU"
+							 Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR">
+					<RegistryValue Name="Description"  Value="PitchX PowerPoint Add-in" Type="string" />
+					<RegistryValue Name="FriendlyName" Value="PitchX"                   Type="string" />
+					<RegistryValue Name="LoadBehavior" Value="3"                         Type="integer" />
+					<RegistryValue Name="Manifest"
+					  Value="[INSTALLFOLDER]TLBR.vsto|vstolocal"
+					  Type="string" KeyPath="yes" />
+				</RegistryKey>
+			</Component>
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>
