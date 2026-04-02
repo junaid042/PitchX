@@ -5,7 +5,7 @@
 
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of TLBR is already installed." />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of PitchX is already installed." />
 		<MediaTemplate EmbedCab="yes" />
 
 		<Feature Id="ProductFeature" Title="TLBR" Level="1">
@@ -40,13 +40,6 @@
 				<File Id="TLBR_manifest" Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
 			</Component>
 
-			<!-- Installs VSTO Runtime silently if not already installed -->
-			<Component Id="VSTORuntime" Guid="*">
-				<File Id="vstor_redist" Source="vstor_redist.exe" KeyPath="yes" />
-				<ExePackage Id="InstallVSTO" SourceFile="[INSTALLFOLDER]vstor_redist.exe" InstallCommand="/q /norestart" DetectCondition="NOT VSTORUNTIMEINSTALLED" />
-			</Component>
-
-			<!-- Registry: tells PowerPoint to load PitchX -->
 			<Component Id="RegistryEntries" Guid="*">
 				<RegistryKey Root="HKCU" Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR">
 					<RegistryValue Name="Description" Value="PitchX PowerPoint Add-in" Type="string" />
