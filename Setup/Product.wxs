@@ -5,10 +5,10 @@
 
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of PitchX is already installed." />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of TLBR is already installed." />
 		<MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="ProductFeature" Title="PitchX" Level="1">
+		<Feature Id="ProductFeature" Title="TLBR" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 
@@ -28,25 +28,27 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
-			<Component Id="MainDll" Guid="*">
-				<File Id="TLBR_dll" Source="$(var.TLBR.TargetPath)" KeyPath="yes" />
-			</Component>
+			<!-- All 3 files in ONE component, registry as KeyPath -->
+			<Component Id="AddinFiles" Guid="*">
 
-			<Component Id="VstoFile" Guid="*">
-				<File Id="TLBR_vsto" Source="$(var.TLBR.TargetDir)TLBR.vsto" />
-			</Component>
-
-			<Component Id="ManifestFile" Guid="*">
-				<File Id="TLBR_manifest" Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
-			</Component>
-
-			<Component Id="RegistryEntries" Guid="*">
+				<!-- Registry entry is KeyPath — fixes ICE38 -->
 				<RegistryKey Root="HKCU" Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR">
 					<RegistryValue Name="Description" Value="PitchX PowerPoint Add-in" Type="string" />
 					<RegistryValue Name="FriendlyName" Value="PitchX" Type="string" />
 					<RegistryValue Name="LoadBehavior" Value="3" Type="integer" KeyPath="yes" />
 					<RegistryValue Name="Manifest" Value="[INSTALLFOLDER]TLBR.vsto|vstolocal" Type="string" />
 				</RegistryKey>
+
+				<!-- All files in same component as registry KeyPath -->
+				<File Id="TLBR_dll" Source="$(var.TLBR.TargetPath)" />
+
+				<File Id="TLBR_vsto" Source="$(var.TLBR.TargetDir)TLBR.vsto" />
+
+				<File Id="TLBR_manifest" Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
+
+				<!-- Fixes ICE64: remove folder on uninstall -->
+				<RemoveFolder Id="RemoveINSTALLFOLDER" Directory="INSTALLFOLDER" On="uninstall" />
+
 			</Component>
 
 		</ComponentGroup>
