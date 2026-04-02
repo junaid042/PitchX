@@ -24,13 +24,20 @@ jobs:
         echo "C:\Program Files (x86)\WiX Toolset v3.14\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       shell: powershell
 
+    - name: Install signing certificate
+      run: |
+        $pfx = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_PFX }}")
+        $pfxPath = "$env:RUNNER_TEMP\pitchx.pfx"
+        [IO.File]::WriteAllBytes($pfxPath, $pfx)
+        Import-PfxCertificate `
+          -FilePath $pfxPath `
+          -CertStoreLocation Cert:\CurrentUser\My `
+          -Password (ConvertTo-SecureString "${{ secrets.CERTIFICATE_PWD }}" -AsPlainText -Force)
+        Remove-Item $pfxPath
+      shell: powershell
+
     - name: Restore NuGet packages
       run: nuget restore PitchX.sln
-
-    - name: Disable ClickOnce signing
-      run: |
-        (Get-Content PitchX\TLBR.csproj) -replace '<SignManifests>true</SignManifests>', '<SignManifests>false</SignManifests>' | Set-Content PitchX\TLBR.csproj
-      shell: powershell
 
     - name: Build solution
       run: msbuild PitchX.sln /p:Configuration=Release /p:Platform="Any CPU"
