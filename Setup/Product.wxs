@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-	<Product Id="*" Name="TLBR" Language="1033" Version="1.0.0.0" Manufacturer="TLBR" UpgradeCode="{DDAB0EA8-1717-4426-85AF-4F94B5301A28}">
+	<Product Id="*" Name="TLBR" Language="1033" Version="1.0.0.0" Manufacturer="YourCompany" UpgradeCode="{DDAB0EA8-1717-4426-85AF-4F94B5301A28}">
 
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
@@ -28,10 +28,8 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
-			<!-- All 3 files in ONE component, registry as KeyPath -->
-			<Component Id="AddinFiles" Guid="*">
+			<Component Id="AddinFiles" Guid="{1CB468D4-D3BA-4240-88AE-768F119D4561}">
 
-				<!-- Registry entry is KeyPath — fixes ICE38 -->
 				<RegistryKey Root="HKCU" Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR">
 					<RegistryValue Name="Description" Value="PitchX PowerPoint Add-in" Type="string" />
 					<RegistryValue Name="FriendlyName" Value="PitchX" Type="string" />
@@ -39,14 +37,12 @@
 					<RegistryValue Name="Manifest" Value="[INSTALLFOLDER]TLBR.vsto|vstolocal" Type="string" />
 				</RegistryKey>
 
-				<!-- All files in same component as registry KeyPath -->
 				<File Id="TLBR_dll" Source="$(var.TLBR.TargetPath)" />
 
 				<File Id="TLBR_vsto" Source="$(var.TLBR.TargetDir)TLBR.vsto" />
 
 				<File Id="TLBR_manifest" Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
 
-				<!-- Fixes ICE64: remove folder on uninstall -->
 				<RemoveFolder Id="RemoveINSTALLFOLDER" Directory="INSTALLFOLDER" On="uninstall" />
 
 			</Component>
