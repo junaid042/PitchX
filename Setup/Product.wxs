@@ -8,7 +8,7 @@
 		<MajorUpgrade DowngradeErrorMessage="A newer version of PitchX is already installed." />
 		<MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="ProductFeature" Title="TLBR" Level="1">
+		<Feature Id="ProductFeature" Title="PitchX" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 
@@ -19,7 +19,7 @@
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+			<Directory Id="AppDataFolder">
 				<Directory Id="INSTALLFOLDER" Name="PitchX" />
 			</Directory>
 		</Directory>
