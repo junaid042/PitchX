@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-	<Product Id="*"
-			 Name="PitchX"
-			 Language="1033"
-			 Version="1.0.0.0"
-			 Manufacturer="TLBR"
-			 UpgradeCode="{DDAB0EA8-1717-4426-85AF-4F94B5301A28}">
+	<Product Id="*" Name="PitchX" Language="1033" Version="1.0.0.0" Manufacturer="TLBR" UpgradeCode="{DDAB0EA8-1717-4426-85AF-4F94B5301A28}">
 
-		<Package InstallerVersion="200"
-				 Compressed="yes"
-				 InstallScope="perMachine" />
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of TLDR is already installed." />
 		<MediaTemplate EmbedCab="yes" />
@@ -36,39 +29,24 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
 			<Component Id="MainDll" Guid="*">
-				<File Id="TLBR_dll"
-					  Source="$(var.TLBR.TargetPath)"
-					  KeyPath="yes" />
+				<File Id="TLBR_dll" Source="$(var.TLBR.TargetPath)" KeyPath="yes" />
 			</Component>
 
 			<Component Id="VstoFile" Guid="*">
-				<File Id="TLBR_vsto"
-					  Source="$(var.TLBR.TargetDir)TLBR.vsto" />
+				<File Id="TLBR_vsto" Source="$(var.TLBR.TargetDir)TLBR.vsto" />
 			</Component>
 
 			<Component Id="ManifestFile" Guid="*">
-				<File Id="TLBR_manifest"
-					  Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
+				<File Id="TLBR_manifest" Source="$(var.TLBR.TargetDir)TLBR.dll.manifest" />
 			</Component>
 
 			<!-- Tells PowerPoint to load PitchX on startup -->
 			<Component Id="RegistryEntries" Guid="*">
-				<RegistryKey Root="HKCU"
-							 Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR"
-							 Action="createAndRemoveOnUninstall">
-					<RegistryValue Name="Description"
-								   Value="PitchX PowerPoint Add-in"
-								   Type="string" />
-					<RegistryValue Name="FriendlyName"
-								   Value="PitchX"
-								   Type="string" />
-					<RegistryValue Name="LoadBehavior"
-								   Value="3"
-								   Type="integer" />
-					<RegistryValue Name="Manifest"
-								   Value="[INSTALLFOLDER]TLBR.vsto|vstolocal"
-								   Type="string"
-								   KeyPath="yes" />
+				<RegistryKey Root="HKCU" Key="Software\Microsoft\Office\PowerPoint\Addins\TLBR">
+					<RegistryValue Name="Description" Value="PitchX PowerPoint Add-in" Type="string" />
+					<RegistryValue Name="FriendlyName" Value="PitchX" Type="string" />
+					<RegistryValue Name="LoadBehavior" Value="3" Type="integer" />
+					<RegistryValue Name="Manifest" Value="[INSTALLFOLDER]TLBR.vsto|vstolocal" Type="string" KeyPath="yes" />
 				</RegistryKey>
 			</Component>
 
